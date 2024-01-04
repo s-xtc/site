@@ -112,8 +112,21 @@
                 "https://discord.com/users/723504827354578946">discord</a>
                 or <a href="https://t.me/sxtcs">telegram</a> at any
                 time.</p>
+    const spotifyEmbedWindow = document.querySelector('iframe[src*="spotify.com/embed"]').contentWindow;
+spotifyEmbedWindow.postMessage({command: 'toggle'}, '*');
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1GE6L5afKa6p2Kzf6FaB4s?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
           </div>
+          <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Wait for the DOM content to be fully loaded before executing the script
+
+        // Your existing code
+        const spotifyEmbedWindow = document.querySelector('iframe[src*="spotify.com/embed"]').contentWindow;
+        spotifyEmbedWindow.postMessage({ command: 'toggle' }, '*');
+    });
+</script>
+
+          
         </div>
         </div>
       </div>
