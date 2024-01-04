@@ -108,7 +108,7 @@
               </div>
             </div>
 
-    <style>
+      <style>
         body {
             background-color: #f0f0f0;
             display: flex;
@@ -158,16 +158,63 @@
             cursor: pointer;
             margin-top: -5px;
         }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 15px;
+            color: #fff;
+        }
+
+        #song-info {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        #song-info img {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #playlist {
+            margin-top: 15px;
+            color: #fff;
+            text-align: left;
+        }
+
     </style>
-    <title>Gradient Music Player</title>
+    <title>Enhanced Music Player</title>
 </head>
 <body>
     <div id="music-player">
+        <div id="song-info">
+            <img src="your-image-url.jpg" alt="Album Cover" width="50" height="50">
+            <div>
+                <h3>Song Title</h3>
+                <p>Artist Name</p>
+            </div>
+        </div>
         <audio controls autoplay>
-            <source src="music.mp3" type="audio/mp3">
+            <source src="your-audio-file.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
         <input type="range">
+        <div class="controls">
+            <button>&lt;&lt;</button>
+            <button>Play</button>
+            <button>&gt;&gt;</button>
+        </div>
+        <div id="playlist">
+            <h3>Playlist</h3>
+            <ul>
+                <li>Song 1</li>
+                <li>Song 2</li>
+                <li>Song 3</li>
+                <!-- Add more songs as needed -->
+            </ul>
+        </div>
     </div>
                                     <p id="text02">You can dm me on <a href=
                 "https://discord.com/users/723504827354578946">discord</a>
