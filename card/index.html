@@ -108,7 +108,38 @@
               </div>
             </div>
 
-            
+                <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #music-player {
+            background-color: transparent;
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        audio {
+            width: 100%;
+            background-color: transparent;
+        }
+    </style>
+    <title>Transparent Autoplay Music Player</title>
+</head>
+<body>
+    <div id="music-player">
+        <audio controls autoplay>
+            <source src="your-audio-file.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
                                     <p id="text02">You can dm me on <a href=
                 "https://discord.com/users/723504827354578946">discord</a>
                 or <a href="https://t.me/sxtcs">telegram</a> at any
