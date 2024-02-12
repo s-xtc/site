@@ -19,19 +19,21 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer; /* Change cursor to pointer when hovering over video */
   }
 </style>
 </head>
 <body>
-<video id="jumpScareVideo" autoplay>
+<video id="jumpScareVideo" autoplay muted loop>
   <source src="video1.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 <script>
   window.onload = function() {
     var video = document.getElementById('jumpScareVideo');
-    video.addEventListener('canplay', function() {
-      video.play();
+    video.addEventListener('mouseenter', function() {
+      video.muted = false; // Unmute the video when hovered
+      video.play(); // Start playing the video
     });
     document.body.requestFullscreen = document.body.requestFullscreen || document.body.webkitRequestFullscreen || document.body.mozRequestFullscreen || document.body.msRequestFullscreen;
     if (document.body.requestFullscreen) {
