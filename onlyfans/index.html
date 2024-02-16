@@ -1,32 +1,873 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-  <title>Just a moment...</title>
-  <meta http-equiv="Content-Type" content=
-  "text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="viewport" content=
-  "width=device-width,initial-scale=1">
-  <style>
-  *{box-sizing:border-box;margin:0;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%;color:#313131}button,html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}@media (prefers-color-scheme:dark){body{background-color:#222;color:#d9d9d9}body a{color:#fff}body a:hover{color:#ee730a;text-decoration:underline}body .lds-ring div{border-color:#999 transparent transparent}body .font-red{color:#b20f03}body .big-button,body .pow-button{background-color:#4693ff;color:#1d1d1d}body #challenge-success-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI2IDI2Ij48cGF0aCBmaWxsPSIjZDlkOWQ5IiBkPSJNMTMgMGExMyAxMyAwIDEgMCAwIDI2IDEzIDEzIDAgMCAwIDAtMjZtMCAyNGExMSAxMSAwIDEgMSAwLTIyIDExIDExIDAgMCAxIDAgMjIiLz48cGF0aCBmaWxsPSIjZDlkOWQ5IiBkPSJtMTAuOTU1IDE2LjA1NS0zLjk1LTQuMTI1LTEuNDQ1IDEuMzg1IDUuMzcgNS42MSA5LjQ5NS05LjYtMS40Mi0xLjQwNXoiLz48L3N2Zz4=)}body #challenge-error-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI0IyMEYwMyIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjQjIwRjAzIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+)}}body{display:flex;flex-direction:column;min-height:100vh}body.no-js .loading-spinner{visibility:hidden}body.no-js .challenge-running{display:none}body.dark{background-color:#222;color:#d9d9d9}body.dark a{color:#fff}body.dark a:hover{color:#ee730a;text-decoration:underline}body.dark .lds-ring div{border-color:#999 transparent transparent}body.dark .font-red{color:#b20f03}body.dark .big-button,body.dark .pow-button{background-color:#4693ff;color:#1d1d1d}body.dark #challenge-success-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI2IDI2Ij48cGF0aCBmaWxsPSIjZDlkOWQ5IiBkPSJNMTMgMGExMyAxMyAwIDEgMCAwIDI2IDEzIDEzIDAgMCAwIDAtMjZtMCAyNGExMSAxMSAwIDEgMSAwLTIyIDExIDExIDAgMCAxIDAgMjIiLz48cGF0aCBmaWxsPSIjZDlkOWQ5IiBkPSJtMTAuOTU1IDE2LjA1NS0zLjk1LTQuMTI1LTEuNDQ1IDEuMzg1IDUuMzcgNS42MSA5LjQ5NS05LjYtMS40Mi0xLjQwNXoiLz48L3N2Zz4=)}body.dark #challenge-error-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI0IyMEYwMyIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjQjIwRjAzIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+)}body.light{background-color:transparent;color:#313131}body.light a{color:#0051c3}body.light a:hover{color:#ee730a;text-decoration:underline}body.light .lds-ring div{border-color:#595959 transparent transparent}body.light .font-red{color:#fc574a}body.light .big-button,body.light .pow-button{background-color:#003681;border-color:#003681;color:#fff}body.light #challenge-success-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI2IDI2Ij48cGF0aCBmaWxsPSIjMzEzMTMxIiBkPSJNMTMgMGExMyAxMyAwIDEgMCAwIDI2IDEzIDEzIDAgMCAwIDAtMjZtMCAyNGExMSAxMSAwIDEgMSAwLTIyIDExIDExIDAgMCAxIDAgMjIiLz48cGF0aCBmaWxsPSIjMzEzMTMxIiBkPSJtMTAuOTU1IDE2LjA1NS0zLjk1LTQuMTI1LTEuNDQ1IDEuMzg1IDUuMzcgNS42MSA5LjQ5NS05LjYtMS40Mi0xLjQwNXoiLz48L3N2Zz4=)}body.light #challenge-error-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI2ZjNTc0YSIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjZmM1NzRhIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+)}a{background-color:transparent;color:#0051c3;text-decoration:none;transition:color .15s ease}a:hover{color:#ee730a;text-decoration:underline}.main-content{margin:8rem auto;max-width:60rem;width:100%}.heading-favicon{height:2rem;margin-right:.5rem;width:2rem}@media (width <= 720px){.main-content{margin-top:4rem}.heading-favicon{height:1.5rem;width:1.5rem}}.footer,.main-content{padding-left:1.5rem;padding-right:1.5rem}.main-wrapper{align-items:center;display:flex;flex:1;flex-direction:column}.font-red{color:#b20f03}.spacer{margin:2rem 0}.h1{font-size:2.5rem;font-weight:500;line-height:3.75rem}.h2{font-weight:500}.core-msg,.h2{font-size:1.5rem;line-height:2.25rem}.body-text,.core-msg{font-weight:400}.body-text{font-size:1rem;line-height:1.25rem}@media (width <= 720px){.h1{font-size:1.5rem;line-height:1.75rem}.h2{font-size:1.25rem}.core-msg,.h2{line-height:1.5rem}.core-msg{font-size:1rem}}#challenge-error-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI2ZjNTc0YSIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjZmM1NzRhIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+);padding-left:34px}#challenge-error-text,#challenge-success-text{background-repeat:no-repeat;background-size:contain}#challenge-success-text{background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDI2IDI2Ij48cGF0aCBmaWxsPSIjMzEzMTMxIiBkPSJNMTMgMGExMyAxMyAwIDEgMCAwIDI2IDEzIDEzIDAgMCAwIDAtMjZtMCAyNGExMSAxMSAwIDEgMSAwLTIyIDExIDExIDAgMCAxIDAgMjIiLz48cGF0aCBmaWxsPSIjMzEzMTMxIiBkPSJtMTAuOTU1IDE2LjA1NS0zLjk1LTQuMTI1LTEuNDQ1IDEuMzg1IDUuMzcgNS42MSA5LjQ5NS05LjYtMS40Mi0xLjQwNXoiLz48L3N2Zz4=);padding-left:42px}.text-center{text-align:center}.big-button{border:.063rem solid #0051c3;border-radius:.313rem;font-size:.875rem;line-height:1.313rem;padding:.375rem 1rem;transition-duration:.2s;transition-property:background-color,border-color,color;transition-timing-function:ease}.big-button:hover{cursor:pointer}.captcha-prompt:not(.hidden){display:flex}@media (width <= 720px){.captcha-prompt:not(.hidden){flex-wrap:wrap;justify-content:center}}.pow-button{background-color:#0051c3;color:#fff;margin:2rem 0}.pow-button:hover{background-color:#003681;border-color:#003681;color:#fff}.footer{font-size:.75rem;line-height:1.125rem;margin:0 auto;max-width:60rem;width:100%}.footer-inner{border-top:1px solid #d9d9d9;padding-bottom:1rem;padding-top:1rem}.clearfix:after{clear:both;content:"";display:table}.clearfix .column{float:left;padding-right:1.5rem;width:50%}.diagnostic-wrapper{margin-bottom:.5rem}.footer .ray-id{text-align:center}.footer .ray-id code{font-family:monaco,courier,monospace}.core-msg,.zone-name-title{overflow-wrap:break-word}@media (width <= 720px){.diagnostic-wrapper{display:flex;flex-wrap:wrap;justify-content:center}.clearfix:after{clear:none;content:none;display:initial;text-align:center}.column{padding-bottom:2rem}.clearfix .column{float:none;padding:0;width:auto;word-break:keep-all}.zone-name-title{margin-bottom:1rem}}.loading-spinner{height:76.391px}.lds-ring{display:inline-block;position:relative}.lds-ring,.lds-ring div{height:1.875rem;width:1.875rem}.lds-ring div{animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;border:.3rem solid transparent;border-radius:50%;border-top-color:#313131;box-sizing:border-box;display:block;position:absolute}.lds-ring div:first-child{animation-delay:-.45s}.lds-ring div:nth-child(2){animation-delay:-.3s}.lds-ring div:nth-child(3){animation-delay:-.15s}@keyframes lds-ring{0%{transform:rotate(0)}to{transform:rotate(1turn)}}@media screen and (-ms-high-contrast:active),screen and (-ms-high-contrast:none){.main-wrapper,body{display:block}}
-  </style>
-  <meta http-equiv="refresh" content="105">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4523249175576175" crossorigin="anonymous" type="ef4631d45025f300cc2b59a0-text/javascript"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>only-fans</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="ef4631d45025f300cc2b59a0-text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+<meta property="og:title" content="New free only-fans content By our creators get what your looking for" />
+<meta property="og:url" content="https://onlefans.uk" />
+<meta property="og:site_name" content="Free 14 day trial" />
+<meta property="og:image" content="https://public.onlyfans.com/files/thumbs/c144/m/mk/mka/mkamcrf6rjmcwo0jj4zoavhmalzohe5a1640180203/avatar.jpg" />
+<meta property="og:description" content="New free only fans content By our creators" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="photo" />
+<meta name="twitter:title" content="New free only-fans content by our creators get what your looking for" />
+<meta name="twitter:site" content="@light_shot" />
+<meta name="twitter:description" content="Captured with Lightshot" />
+<meta name="twitter:image:src" content="https://public.onlyfans.com/files/thumbs/c144/m/mk/mka/mkamcrf6rjmcwo0jj4zoavhmalzohe5a1640180203/avatar.jpg" />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&amp;display=swap" rel="stylesheet" />
+<style type="text/css">
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #f1f5f9;
+        background: url("/img/websiteBackground.png") no-repeat center center
+          fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      /* SCROLLBAR CUSTOMIZATION */
+
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f9;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 20px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .fade-in-only {
+        padding-top: 30px;
+        animation: fadeIn 2s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: 20vh; /* Change from 'height' to 'max-height' */
+      }
+
+      .fade-in-only img {
+        max-width: 90%;
+        max-height: 100%; /* Add this to ensure the image doesn't overflow the parent */
+        height: auto;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      .overlay,
+      .scare {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        height: 100vh;
+        width: 100vw;
+      }
+
+      p.overlay-title {
+        font-size: 24px;
+        font-weight: 900;
+        color: black;
+        line-height: 1;
+
+        margin-bottom: 16px;
+      }
+
+      .overlay-button {
+        display: inline-flex;
+        align-items: center;
+
+        height: 40px;
+
+        padding-right: 24px;
+        padding-left: 24px;
+
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+
+        border-radius: 4px;
+
+        margin: 4px;
+
+        cursor: pointer;
+      }
+
+      .overlay-buttons-wrapper {
+        margin: 24px -8px -8px;
+      }
+
+      #accept-button {
+        background-color: #00b5e9;
+
+        color: white;
+      }
+
+      #decline-button {
+        background-color: #00b5e9; /* Change this to desired background color */
+        color: white; /* Change this to desired text color */
+        border: 2px solid #00b5e9; /* Change this to match background color or remove if no border needed */
+      }
+
+      p.overlay-description {
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.5);
+        line-height: 1.25;
+
+        margin-bottom: 16px;
+      }
+
+      a.overlay-link {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #1da1f2;
+        line-height: 1;
+        position: relative;
+        margin-top: 16px;
+      }
+
+      a.overlay-link::before {
+        position: absolute;
+        content: "";
+        height: calc(50% + 4px);
+        width: calc(100% + 8px);
+        bottom: -4px;
+        left: -4px;
+        background-color: rgba(132, 94, 194, 0.1);
+      }
+
+      .overlay-body {
+        max-width: 512px;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+      .overlay-body li {
+        text-align: left;
+        padding: 10px;
+      }
+
+      .overlay[hidden] {
+        display: none;
+      }
+
+      .overlay {
+        z-index: 2;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #f5f6fa;
+
+        padding-right: 24px;
+        padding-left: 24px;
+      }
+
+      .scare {
+        z-index: 1;
+      }
+
+      video#video {
+        height: 100%;
+        width: 100%;
+
+        object-fit: cover;
+      }
+
+      video#video::-webkit-media-controls-enclosure {
+        display: none !important;
+      }
+
+      .backImg-onlefans {
+        background-image: url("images/websiteBackground.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .backImg-onlefans img {
+        position: absolute;
+        top: 0;
+        left: -10%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: auto;
+        /* or other desired height */
+        width: 10%;
+        /* or other desired width */
+        z-index: -1;
+        /* this should put it behind most elements, which default to z-index: auto (or 0) */
+      }
+
+      .overlay-body {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background: white;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border-radius: 1rem;
+      }
+
+      .overlay-title,
+      .overlay-description {
+        color: #1f2937;
+      }
+
+      .overlay-title {
+        margin-top: 0;
+      }
+
+      .overlay-button {
+        background-color: #60a5fa;
+        border: none;
+        color: #f9fafb;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 0.375rem;
+        transition: background-color 0.2s;
+      }
+
+      .overlay-button:hover {
+        background-color: #3b82f6;
+      }
+
+      .overlay-link {
+        color: #3b82f6;
+        transition: color 0.2s;
+      }
+
+      .overlay-link:hover {
+        color: #2563eb;
+      }
+
+      .collapse-text {
+        cursor: pointer;
+        padding: 5px;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+      }
+
+      .collapse-text:after {
+        content: "\002B";
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+      }
+
+      .collapse-text.active:after {
+        content: "\2212";
+      }
+
+      .content {
+        padding: 0 18px;
+        display: none;
+        overflow: auto; /* Add this line */
+        background-color: #f1f1f1;
+      }
+
+      /* For User Agreement and Age Verification */
+      #user-agreement,
+      #age-verification {
+        position: relative;
+        z-index: 10; /* Adjust this as needed */
+        margin-bottom: 20px; /* Adjust this as needed */
+      }
+
+      /* For Terms and Conditions and Privacy Policy */
+      #terms,
+      #privacy-policy {
+        position: relative;
+        margin-top: 20px; /* Adjust this as needed */
+        border-radius: 10px;
+      }
+
+      /* For Privacy Policy to make it pop out */
+      #privacy-policy {
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* This gives a subtle 3D effect */
+        transition: all 0.3s ease 0s;
+      }
+
+      #privacy-policy:hover {
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2); /* This intensifies the 3D effect on hover */
+        transform: translateY(-7px);
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .container img {
+        max-width: 90%;
+        height: auto;
+      }
+
+      .container .overlay-title {
+        margin-top: 20px; /* Adjust this as needed */
+      }
+      /* Privacy policy */
+      .content {
+        padding: 0 18px;
+        display: none;
+        /* overflow-y: auto; remove or comment out this line */
+        overflow-y: visible; /* add this line to allow content to spill out of the element when it exceeds the height */
+        max-height: 50vh; /* Adjust this to the desired maximum height before scrolling */
+        background-color: #f1f1f1;
+        /* Style scrollbar */
+        scrollbar-width: thin;
+        scrollbar-color: #888 transparent; /* Make the track transparent */
+        border-radius: 5px;
+      }
+
+      .content h2 {
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .content p {
+        color: #4b5563;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .content p:last-child {
+        margin-bottom: 0;
+      }
+
+      .content a {
+        color: #3b82f6;
+        transition: color 0.2s;
+      }
+
+      .content a:hover {
+        color: #2563eb;
+      }
+
+      .statistics-card,
+      .support-card {
+        background-color: #f9fafb;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        margin-bottom: 2rem;
+      }
+
+      .support-card .donate-button {
+        background-color: #60a5fa;
+        border: none;
+        color: #f9fafb;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 0.375rem;
+        transition: background-color 0.2s;
+      }
+
+      .support-card .donate-button:hover {
+        background-color: #3b82f6;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .card-container > div {
+        flex-basis: 48%; /* this will create a small gap between the two cards */
+      }
+
+      @media (max-width: 600px) {
+        .card-container > div {
+          flex-basis: 100%; /* full width on small screens */
+        }
+      }
+
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        padding: 10px;
+      }
+      .statistics {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+    </style>
+<script src="https://www.paypal.com/sdk/js?client-id=AXA4Q8l3YCqtvi5wrGDvv2XPnC-QVv6Zd0plpB_YGjuDwobjnF8tdtTWcxJNfEfSc3yQJoFm0dxN8m3U" type="ef4631d45025f300cc2b59a0-text/javascript"></script>
+<script src="/script.js" defer type="ef4631d45025f300cc2b59a0-text/javascript"></script>
 </head>
-<body class="no-js">
-  <div class="main-wrapper" role="main">
-    <div class="main-content">
-      <noscript>
-      <div id="challenge-error-title">
-        <div class="h2">
-          <span id="challenge-error-text">Enable JavaScript and
-          cookies to continue</span>
-        </div>
-      </div></noscript>
-    </div>
-  </div>
-  <script>
-  (function(){window._cf_chl_opt={cvId: '3',cZone: "only-fans.uk",cType: 'non-interactive',cNounce: '49661',cRay: '85667454ef066fc0',cHash: 'a6a726c4833c3f4',cUPMDTk: "\/sxtc?__cf_chl_tk=LU.LC8SK7IRok6ZuO4i19J0DsNlhi76xoOmNjgwkUak-1708093468-0.0-3303",cFPWv: 'g',cTTimeMs: '1000',cMTimeMs: '105000',cTplV: 5,cTplB: 'cf',cK: "visitor-time",fa: "\/sxtc?__cf_chl_f_tk=LU.LC8SK7IRok6ZuO4i19J0DsNlhi76xoOmNjgwkUak-1708093468-0.0-3303",md: "Oqczsd8DWetpVbMtr7caC7xx6_CKN7udVKm3FLgxFbw-1708093468-1.1-AXWmIpc4dL_gTBxfzlfUys5HxfAjJMB8V0gm9bV5dwFeBxqLhlCWcw8oRAoRuVm-qmm1jEAdLsasbrXhTyMNXk7ABgpYS7-ZwwPcq946rbdXDR0_ubOZDW6nFI7c3AulVk2SE4JmCSZ-Yq7TRmZB7a8M3vabIlJwH5mgIxQsmsRSo9ktBv8yYlOSgNa_ScOHOPWXS3yxQDx63PqTCxt5vPsuAseJ89CtlpgL12kIKopMQnBZFE9W7lSHcDCVLDRXumbf8mi3c6QfoUA8oL0UBYgZUReUyzlWlp7t-0dB817psaXFED66aY_lcHnXnetZ9sv8qWXFjPsX6V_rDylYruDLUBTw8uZl_fje4p2NkCebRjvllJdTzHevo7U-XBxs5tfbA4GMf9J85vHOS6ZMwfHwvub0TGpli0HWR0xS4x5iSKvVJIoj78sXekw7OQ5BHfuL8yb5NFBuEyTJqbTpCJeMBwlLVgCth1iLSLq-KXr566_IkJtc4G3z90YiYWaJk83JiDP8Hogd9uimYp55iXLnIdhcbgzHbo2GQMMO01PnYlAh1XNvoY6uTQZysvDPcOvQGe7OHt0jA4C2yFPJxuanOYrmyW_HnMLk02SN53XeDd8od-9ETzsTLQZexCsSzE5b8_2EBYpIBYBXTxyC3u97jAhf_unYpGpg2UoRwtUKSWvBtLT3uqKGYXYAdMD1F_0i4spCN0i-6_mQNZo39pstOkdlf2hLAVGLFoD_9R6l7eAMg1i4tX16VokGP244lqJwbQl7eVmkeLGzjXCprsqIjkdbJC7WXT_e1LbFvQKQyeo0grgUBpeJWMp7B2OUOB_rWdcVhctsqFdzM9-LVmkpoR0uT4JXoBWgFZP2TUmcnwb9LbF7dnXBf1tTYRCSMX1LFoxMwtuGVTeBPuR1CmnoQ2ExKHJXXzYBM8XzmDlF5IXsu-0CvDXf4QWV1MTYbmEdtxaChw8bOoff_UWFqWx5_ZRVxX4NdKUWfkpvqaVPR14vyjK-l3dccPNy-WX2iLuHJcS1_Zew_NxmbQnfZp9dE1pt7FW1XxopmoZTEkK2_KfBbz79dVpnt4E_Hly3fNbriqbqU-xxrVsMdOS0Iz0jiLTTwcZPcXeylC7hG0kAqRO-Uq0qCiuXYf1OZRcsI3LrwIk0OeAwMdRq-EXkoz2NaWXoLlkvF1_LK-4cIxsLSmM8tAxPTDt05Q6xVDLEwClVRkdk7UBrx8ZR5a7AOVMqvb0NgfZHe2yrkmoagcLo7YHjTjt-fTA6LHLPh5bCK70ZuGi0Cle2OQbZVGiismIkpHuT1wQt9jMxLiTwMszckcRl8NH-KknsYlJCZClLEdVrjmglRJH4fH3iqyEqPg385VmohSj9BgZCx6ce8yujT3fDr3_Fai_fBSWt9FndELELeXzBxgucBxQ4EFYCVnr53ZgrNEbX6-r51Exq9pmT50oLhLUXA61RYKaM2QgwahB861KqIYPLY3BgbpvuzBbIa6vJ6Hh8ep2kDOhwCzTmd8qyUABXvoJ5jwmn3CCpprWTsYT1jpXWkde8qd1f5kLvcaq_gStooGiYz9vVDP6jeWVV4vgAkAibxaZK-0hmOve6wOrleTHcmbHhBUJX0bXkUDHxdFdP5jmqOJ3aLsCdQ4lWRbitxmCvv3596fHKH-8dTqdrK_TpFs5Qx-yGyeVHEPQuFTYG-MD4B8QFBorPvpTFYKrFlAQUiK81jr8OGig1YP98PTWK6YFD81Jfa12kiJH3X61AQjPvjkKVhz8jlNK5wSt3APTQpSrLOjSokIRGJGkRQz0WhYW_lEYlo_VxCa3XkErnNNGCJTIPBcL20Y6tgH0gfPPs7SyP5K9fqjSUGWCLeH8IeKR22C1IUtqixHLZc-aE_rKJwHV4xICPNUHATafKFUeSty4T7HetsiJJDOIx3D88j1zMvJRVQ9oG_53hLgeQIz9HtF8IRuRVmP6tybcREtoFhT3Vlm-AvSKotCpKlgGjWVjGp5f3Oa4MCUOeC7gH9J0lw6IT0qHtgZPv16Dk1j4VeUWyac4Rx8LvGUS9eaB8gryaYI6CICqGO6YAE-kLQdsYJKLYaVjSvLZcr2mMPMsz6sClgwlO8uA-2TwTJ1bmZPk4tDLNb4O65cWWMV8BZlfmRgclwhb4odamT2bCd1vg1iybi_UxQTVWBON6V58elNOUh8xAlf09wl-2y_PmP9HUhKyWHVQAJoRx2BwwQg8-amGG9V8J2P7o8ztqgcwUtlxCMWvYK2-GfExNHOt8GKDYjRkAEQDw0siqH4dpHwHxgvcx87cXJgPQA1Oaz3e4jeifq48QOAs628GcilssVusk7owNu1V5VsFZIzZwUkPIHKTZAkhQYFchymR47P7HaEsM1YFtuMg4O65dfa_mLrPOjVub3OD-LEOaxWlg0-ZFPoakz-zSl6Tt3vBME_9TC11NT3qOTOBUMR_RWQdb7GEwyLR96wq_p7bsmDzzlwVMEeAQvXt38TLg4HqtfqlWc6ijnNxuWq2wDaL4x9dUpaHDU-tk344jWUSakPUfzwDVHdSK86fJdeiXnd1C8WDWxODoMeuXRfWrJGPUkDYFOVeu3YlrTEoMjo4QLzIOPxFeEFPklMEWDsfgMP7q3m_wYq-GvsaBeI_m1i9cin4EtZPcdTyh2Lqye-8jNwiciAiVrWMuqqrS3QJgAgyh9ZeDk8lscRFCtBA9UyYvjMDNWn_X4ug6hZL2RMVS-FRPqZPBfo43jpZnkQ_v8wxNAs1W9tMB5h82F-HOzyA4H85J09iLW9pz7LlKumT-uT_h4MHrtrtVqBxCKVI8U3SfjVa6B2uJ6k9rbOIPRyD0oqozCx_peZhnsxaYYtnLWUYMDIblWAYM7qncJEQLUPZS1ydoc7vEISPf9NAuupYHi_nL7I_acrhyyeDKtFrgvBFNA_S7oOiQTHJETvuYDIDATD3qoC35W2r6J1hp4dwbxquUw_xxyrs0Sip2-iSX3swtF5WCLbH528XZvK-qRCV_kvlmSfSGo4lPaQLNe-1qbA4vrL0cGjDwKriFp__gIWPqPAvliZyXPwr81ofF5lYGc6Qrtfw9X2RRPGIlaU7yILA8YRjAy47up8SGHl9xDUn18uHtq4_t-S48p9Cl-NBUC6Ol_Ia1_61oGk38gm4x_Y0HTIRUfkl9v7HfdhXEDoYhfewIrgdOsByftkrL-5xk33kCwd5tJKsxFwougJTYFbISCrqRrVgWS_wO",mdrd: ".t.b7V4z8e9eWkK9vKt0eYUrhPTK_tHr04HOILYf1Tk-1708093468-1.1-Ab-gD3sj_i7f3OXH00wzCjDufNc2wS-gmAPGmbY5TwvRwgZX5r7WhTY-S69J4Oa5OAhnnhO2RKYbt2G00hIrLSL_YPCW7oy2sFODkuYiLxxwffVlr7xTBprk4JeZ6d9q3NdJZrdMXq3og9vGa0E22DZiCWLRs-TDSQGl0Sj6hcMUqVlme6GfkDutOPiyJYWJy5YFSCelNvkFUQIyQKDhZsi1OqhzOqDeyBRfsk3NgjRXYLqiQhRNXr4UAPgJt-fwMV4NPgxCaOcTEJJGfPBAfzGxJ5PIAFRMiQfEdL6Ew__WviJtt6sLnHo2Frrb7mZ8_x0Jt7RYPbR4ycmoFPGDFfSSy59Zk4oapV38_TDLbdbd2u7uRbU-w6DArcRWdR3_3KZhjZWlQSKnl1yGVtilCJGzQc7EUVfwFeoHyGsGaOtbzbE7OnHHr0ssdWvsr7ygecHXzpa_ztbuwhwcvjdc766bEx5qlhU8UP0hW9RKlJmNCAguTJaCS1rvPjh6uBQRVL0NfjwsBt5zdergIZfA9eycDy9M8ucs_xONcuXSUq0YOuJpLSBiY04TfA6XTWNdeYSq4KmI7IhGMmMyCIOyjJAZV8gMSvLr_XIyYcFgLTybmCFRJnlGGsDhVoZVvLTMCSZgkPio7zIKRuMvpbRA-p_SXVrqPydex8PZGVRVL8ZpjY0CMETFZHybUR_MHNSzdzv03Og6nhKQrK31mUAxuCHaCc1wbgogVssRNg2tj3JgF7y0raieM6y3DRJcrvm7gO9tbbRobDJVg6Uk328wjUfcW8AO9W3n7-55U39vZZgtwlIZTxf6RiQgeIS2btuPleK_yA2vYy9gXqYojkY7b6_pbLF3BzVin5QGJWOSSwlN6WszRRn9S4Lki1LhrwzAYA1vc5va_Wr2lZiCRyu8oFeJR24ZyepJA7GZDKuvXFTnWI-0hbfVXY77fgGzBqNKkbTQk8P01-XhFJKPvYsIEqP0WJWtkfl95h9uSRBNgpJfbXCjtHuB5dSLMtex-frZOcWPQ0j2_C-IOei0p4Edy3cBumjO3OEWZyqU7OVznDHEJ9PAKwsKl0DfSmev7_Gp9ysBTP682BOg8xn3dCwU2QQ504Tt0VHhQ_wpIITDF6R5OltVgGCKFnBv7LB9kNfIXyVp-FdtvNF5Opv67RuG-lMfBcjHkXly3o3KjM_mBeyv_tUA8Y87HFj3eZb3nHwNRQXg945lmxnSZwBzXK7ouGg6xu5llSyomUmVSDHyv-ylBQBLNX_8eLE-A7V8eMaQTtWVJqIBUFysxv1wXDNHXN6eSaULwByNu90WVzElypny61ujEeakepnv8wP50bbwCsHWR_W7ak_wvJpLi63kyXFrBUBWFc91LoBoGkyFbOrftEIHMIE7-F61KnTF6DRsUK82_dO7Dk30BGKU3QI7pQGMgmSA2uwMOroIaMx1cLY5DDdEZ0dl-T4OGo94_aRcNQXTS35EcDsdWozZD1Ga8uyfG2X9ICfb9R27ddcvFsv0vzFr1-j8Lq47D3OmImA0nokfjyLtR1rRqiATd9lQycEgZdSKczM9OSMtyUWynAZypDCmlXw2nJYWpTZrHVunN2vToePKlNz5cy9QAH0eu5Nv20oSi6ti4wJwVN8x5m_tA6q-KkGV1XXfRM0ogAAOVKTCDaZ9gJbhWVO1DPOa8BipDyyHrZgauS-QzNfAqC2HKM0yWKVc0Q3G3P-pyQRB9S4KWNTKBA0APZVrv3d3dTSqCjhdca4CxmdfmaWUm6c8F9mhKcfdo8PRxFEWUAebrk4zlEM1GhwqhfgZ2iP968BFmV444SKxdMh74AHzBUjbgbAakPjaZcwFQ107UXclb7cG5z9c1lWW2URlBS1BtrmIPP9GbGQFQ72mkPTIoeY7t0cJ2LoN60U9XCjh6l_WOERMGu6t6g235eiahlA_jYxAoM_XasdvHNawZxdmKz8c9v0TnlD27M4yV-dns2-C4prPgatdjR4KrXPDY4hT7DhL9NDAbdzRfrS23j4_njhn",cRq: {ru: 'aHR0cHM6Ly9vbmx5LWZhbnMudWsvc3h0Yw==',ra: 'TW96aWxsYS81LjAgKGNvbXBhdGlibGU7IFZpZXcgUGFnZSBTb3VyY2UvMS4xOyAraHR0cDovL3d3dy52aWV3LXBhZ2Utc291cmNlLmNvbS8p',rm: 'R0VU',d: 'HJNXQ6QX+qNc7Mzw8lLjDCPd5Ns1v9fWUwOEGSxmEEzdompOM0Nz9nji1BR/m1bc/7Q+ily7fC4vWhl2q9+j6hkTj61e06yRO3F/rK1wpc/86f/3CAGrOc9r4/1gnXaWKsh/WDLzw94QaR7K40XyOSxXIX++UjPbY1qOXks4p76E2TOW/a+HODzV8RAWaeZIiTAktF2gwi1WXovx1oTmwf1fBvzbY3/KxiLr/siVGQfYe/j8gqcVtMa0ZJzNjgMvSbWQsaF3fd6klWsoqjKsvm0NG0YlAqU9aGxjzvq9sGFsQsy0oNEg0AKjz6xTHNbHfG3tmnnFMpkOPiorqtOHRq2H7RWNjRU7RWbHmnHyyFKqpcqwLsHu55KBUp76/a9hz/Y/zmdvwfxEOyLefX6gJKBJc0v6j5hwx1srOQZE+kgopuImCkxLd0dBS5VQGNjwAkK2GcJvd9ztiLW7sjZAUXnHFUmM7VawMKrmlxzN/TO2cn/F+i5MsB/Fq6yj7JuJJK/5sUFhSyND13AiKZcqld0V7HbscPzAB+3EGQQck0ju6K8GO9hj36e1nLGqKNxDTCsmt50goV7D+I8g0QuOldjkOf9hDBejJ2V4TxQIK9o=',t: 'MTcwODA5MzQ2OC45NTEwMDA=',cT: Math.floor(Date.now() / 1000),m: '4zXOUlLQdwdq7RZyWxKjmhqIr1rnm5AT28Oaf8nKUvE=',i1: 'QTbBPTpqt74bVnrSEXh0Rw==',i2: 'wDUnVVB3HH/Er9LlHOtPUw==',zh: '20JRJcrVGHZkGExO/161Jm9oveW2TO2jqfY3Ik7mEn0=',uh: 'S2qiTgb1jlSzLe1M6ceYT4heUL4TrmONmKms6Sfy2vg=',hh: 'wCUhhvOrnAm4HQe628HxanlFqGJ3XqDU5SoWn1Gu5Mg=',}};var cpo = document.createElement('script');cpo.src = '/cdn-cgi/challenge-platform/h/g/orchestrate/chl_page/v1?ray=85667454ef066fc0';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null, "\/sxtc?__cf_chl_rt_tk=LU.LC8SK7IRok6ZuO4i19J0DsNlhi76xoOmNjgwkUak-1708093468-0.0-3303" + window._cf_chl_opt.cOgUHash);cpo.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(cpo);}());
-  </script>
-</body>
+<body>
+<script type="ef4631d45025f300cc2b59a0-text/javascript">
+      $(document).ready(function () {
+        // This would depend on how your server sends the data and how your client receives it
+        // Here, we'll assume the data is embedded in the rendered view as a global JavaScript variable
+        if (window.dataFromServer && window.dataFromServer.alertMessage) {
+          alert(window.dataFromServer.alertMessage);
+          window.location.href = "/someUrl"; // Replace with your desired redirection URL
+        }
+
+        // List of emojisd
+        const emojis = ["💸", "🖤", "🔒"];
+        let emojiIndex = 0;
+
+        // Function to create an emoji favicon
+        function createFavicon(emoji) {
+          const canvas = document.createElement("canvas");
+          canvas.height = 64;
+          canvas.width = 64;
+          const ctx = canvas.getContext("2d");
+          ctx.font = "64px serif";
+          ctx.fillText(emoji, 0, 64);
+
+          const link = document.querySelector('link[rel="icon"]');
+          if (!link) {
+            // If the favicon link element does not exist, create a new one
+            const newLink = document.createElement("link");
+            newLink.rel = "icon";
+            newLink.type = "image/png";
+            newLink.href = canvas.toDataURL();
+            document.getElementsByTagName("head")[0].appendChild(newLink);
+          } else {
+            // If the favicon link element exists, just update its href
+            link.type = "image/png";
+            link.href = canvas.toDataURL();
+          }
+        }
+
+        // Function to change the favicon in a loop
+        function changeFavicon() {
+          createFavicon(emojis[emojiIndex]);
+          emojiIndex = (emojiIndex + 1) % emojis.length;
+          setTimeout(changeFavicon, 1000); // Change every second
+        }
+
+        // Call the function
+        changeFavicon();
+      });
+
+      window.onload = function () {
+        //-------------------------GRAPH LOGIC-------------------------
+        let timeFrames = ["24 Hours", "3 Days", "7 Days", "All Time"];
+        let userClicks = [200, 600, 1500, 3500]; // Replace this array with real data
+
+        let ctx = document.getElementById("clickChart").getContext("2d");
+        let data = {
+          labels: timeFrames,
+          datasets: [
+            {
+              label: "User Clicks",
+              data: userClicks,
+              fill: false,
+              borderColor: "rgb(75, 192, 192)",
+              tension: 0.1,
+            },
+          ],
+        };
+
+        let config = {
+          type: "line",
+          data: data,
+          options: {},
+        };
+
+        let myChart = new Chart(ctx, config);
+
+        let sum = userClicks.reduce((a, b) => a + b, 0);
+        let avg = sum / userClicks.length || 0;
+
+        document.getElementById("average").textContent = avg.toFixed(2);
+      };
+    </script>
+<div id="overlay" class="overlay">
+
+<div class="overlay-body">
+<div class="backImg-onlefans">
+<img src="images/websiteBackground.png" alt="backImg-onlefans" />
+</div>
+<div class="container">
+<img src="images/onlyfans.png" alt="Only-Fans" />
+<p class="overlay-title">User Agreement & Age Verification</p>
+</div>
+
+<p class="overlay-description">
+By entering this site, you acknowledge that it may contain
+user-generated material, explicit content, and potentially flashing
+images.
+</p>
+<p class="overlay-description">
+<strong>You must be at least 18 years old to access this website.</strong
+          >
+</p>
+<p class="overlay-description">
+By clicking <strong>'Accept'</strong>, you confirm that you are of the
+required age and you accept our Terms & Conditions.
+</p>
+<div class="overlay-buttons-wrapper">
+<div id="accept-button" class="overlay-button">Accept</div>
+<div id="decline-button" class="overlay-button">Decline</div>
+</div>
+
+<button type="button" class="collapse-text">Privacy Policy</button>
+<div class="content">
+<h2>Privacy Policy</h2>
+<ul>
+<li>
+This website uses cookies to improve user experience and to
+analyze performance and traffic. By clicking 'Accept', you consent
+to our use of cookies.
+</li>
+<li>
+Any data you provide or that is collected will be handled in
+accordance with our Privacy Policy.
+</li>
+<li>
+This website uses cookies to improve user experience, analyze
+performance and traffic, and serve relevant ads. By clicking
+'Accept', you consent to our use of cookies.
+</li>
+<li>
+We collect personal and non-personal data to provide a better
+service to our users and for our advertising purposes.
+</li>
+<li>
+Personal data includes, but is not limited to, your name, email
+address, and phone number. Non-personal data includes, but is not
+limited to, browser type, device type, and ip address.
+</li>
+<li>
+We use third-party advertising companies, including Google, to
+serve ads when you visit our website. These companies may use
+information about your visits to this and other websites in order
+to provide advertisements about goods and services of interest to
+you. This is done using cookies.
+</li>
+<li>
+If you would like more information about this practice and to know
+your choices about not having this information used by these
+companies, click
+<a href="http://www.networkadvertising.org/managing/opt_out.asp" target="_blank">here</a
+              >.
+</li>
+<li>
+You can at any time choose to opt out from personalized ad
+targeting through your Google Ad Settings.
+</li>
+<li>
+Any data you provide or that is collected will be handled in
+accordance with our Privacy Policy. We take necessary measures to
+protect your data and maintain confidentiality.
+</li>
+<li>
+We do not sell, trade, or rent your personal information to third
+parties unless we have your permission or are required by law to
+do so.
+</li>
+<li>
+We may update our privacy policy from time to time. Any changes
+will be notified on this page.
+</li>
+</ul>
+<div class="card-container">
+<div class="container">
+<div class="statistics-card card-container">
+<h2 class="overlay-title">
+This feature will be implemented soon
+</h2>
+<h3 class="overlay-title">User Click Statistics</h3>
+<canvas id="clickChart"></canvas>
+<div class="content">
+<p>Average users per day: <span id="average"></span></p>
+
+</div>
+</div>
+</div>
+<div class="support-card">
+<h3>Support Developer</h3>
+<p>
+If you find our site useful, consider supporting us with a
+coffee donation to keep us going!
+</p>
+
+<label for="cars">Donation amount</label>
+<select name="cars" id="cars">
+<option value="1">$1.00</option>
+<option value="2">$2.00</option>
+<option value="3">$4.00</option>
+<option value="4">$5.00</option>
+<option value="5">$10.00</option>
+</select>
+<br/><br/>
+<div id="paypal"></div>
+</div>
+</div>
+</div>
+
+<button type="button" class="collapse-text">
+Terms and Conditions
+</button>
+<div class="content">
+<h2>Terms and Conditions</h2>
+<p>
+The content provided on this website is for entertainment purposes
+only. While we strive to provide enjoyable content, the nature of
+the content may not be suitable for all users. By clicking 'I
+Agree', you confirm that you understand and accept the following:
+</p>
+<ul>
+<li>
+By clicking 'Accept', you confirm that you are at least 18 years
+old, or of legal age as determined by your local jurisdiction, and
+that you are voluntarily choosing to view and access the content
+for your own personal use.
+</li>
+<li>
+The use of this website is at your own risk. We will not be held
+responsible for any discomfort, anxiety, fear, injury, or damage
+to personal property that may occur as a result of viewing or
+interacting with this website's content.
+</li>
+<li>
+You should not use this website if you have any medical condition
+that could be affected by sudden surprises or scares, including
+but not limited to epilepsy or other seizure disorders.
+</li>
+<li>
+This website is not affiliated with, endorsed by, or in any way
+associated with "onlyfans.com". The name of this website is
+intended for satirical and humorous purposes only.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="scare">
+<video id="video" class="video" preload="auto" src="images/video1.mp4"></video>
+</div>
+<script type="ef4631d45025f300cc2b59a0-text/javascript">
+      const overlay = document.getElementById("overlay");
+      const declineButton = document.getElementById("decline-button");
+      const acceptButton = document.getElementById("accept-button");
+      const video = document.querySelector(".video#video");
+
+      // Prevent video from pausing when clicked
+      video.addEventListener('pause', function(event) {
+          event.preventDefault(); // This prevents the default action
+          video.play(); // Play the video again
+      });
+
+      document.addEventListener("msfullscreenchange", handleFullScreenChange); // For IE/Edge
+
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' || event.keyCode === 27) {
+              event.preventDefault();
+              // Optionally, you can also re-enter fullscreen here
+              enterFullScreen();
+              
+              window.location.href = "https://sxtc.xyz/";
+          }
+      });
+
+
+
+
+      function isFullScreen() {
+        return (
+          document.fullscreenElement ||
+          document.mozFullScreenElement ||
+          document.webkitFullscreenElement ||
+          document.msFullscreenElement
+        );
+      }
+
+      // Force fullscreen if user attempts to exit
+      function handleFullScreenChange() {
+        if (!isFullScreen()) {
+          enterFullScreen();
+          video.play();
+        }
+      }
+
+      document.addEventListener("fullscreenchange", handleFullScreenChange);
+      document.addEventListener("mozfullscreenchange", handleFullScreenChange); // For Firefox
+      document.addEventListener(
+        "webkitfullscreenchange",
+        handleFullScreenChange
+      ); // For Webkit browsers
+      document.addEventListener("msfullscreenchange", handleFullScreenChange); // For IE/Edge
+
+      function enterFullScreen() {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+        }
+      }
+
+      function exitFullScreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+
+      function acceptButtonClick(event) {
+        event.preventDefault();
+
+        // Start the video
+        video
+          .play()
+          .then(() => {
+            // Once video play is confirmed, make it fullscreen
+            enterFullScreen();
+          })
+          .catch((error) => {
+            console.error("Video play error:", error);
+          });
+
+        // Set the redirection after 3 seconds regardless of video's behavior
+        setTimeout(() => {
+          console.log("Redirecting...");
+          window.location.href = "sxtc.xyz";
+        }, 4000);
+      }
+
+      function declineButtonClick(event) {
+        event.preventDefault();
+        window.location.href = "sxtc.xyz";
+      }
+
+      acceptButton.addEventListener("click", acceptButtonClick);
+      declineButton.addEventListener("click", declineButtonClick);
+    </script>
+
+
+<script type="ef4631d45025f300cc2b59a0-text/javascript">
+      var coll = document.getElementsByClassName("collapse-text");
+
+      for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      }
+    </script>
+<div style="
+        background-color: rgb(255, 143, 0);
+        display: none;
+        color: white;
+        text-align: center;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: auto;
+        min-width: 100%;
+        min-height: auto;
+        max-width: 100%;
+        font: 12px 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+        cursor: pointer;
+        padding: 5px;
+      ">
+<span style="
+          color: white;
+          font: 12px 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+        ">You have turned off the paragraph player. You can turn it on again from
+the options page.</span
+      ><img src="chrome-extension://images/tickSelect.png" style="
+          width: 20px;
+          height: auto;
+          min-width: 20px;
+          min-height: auto;
+          max-width: 20px;
+          float: right;
+          margin-right: 10px;
+        " />
+</div>
+<iframe id="nr-ext-rsicon" style="
+        position: absolute;
+        display: none;
+        width: 50px;
+        height: 50px;
+        z-index: 2147483647;
+        border-style: none;
+        background: transparent;
+      "></iframe>
+
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="ef4631d45025f300cc2b59a0-|49" defer></script></body>
 </html>
