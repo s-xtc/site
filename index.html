@@ -53,5 +53,31 @@
       <next-route-announcer>
          <p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; top: 0px; width: 1px; white-space: nowrap; overflow-wrap: normal;"></p>
       </next-route-announcer>
+	   
+	   <div id="discord-status">
+    <p>Loading Discord status...</p>
+</div>
+
+	   <script>
+    // Fetch Discord status data
+    fetch('https://api.lanyard.rest/v1/users/723504827354578946')
+        .then(response => response.json())
+        .then(data => {
+            // Update HTML content with Discord status
+            const statusElement = document.getElementById('discord-status');
+            if (data.success) {
+                const discordStatus = data.data.discord_status;
+                statusElement.innerHTML = `<p>Discord Status: ${discordStatus}</p>`;
+            } else {
+                statusElement.innerHTML = `<p>Failed to fetch Discord status.</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching Discord status:', error);
+            const statusElement = document.getElementById('discord-status');
+            statusElement.innerHTML = `<p>Error fetching Discord status.</p>`;
+        });
+</script>
+
    </body>
 </html>
