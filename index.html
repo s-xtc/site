@@ -174,11 +174,11 @@
         "bio_presence": {
           "_id": "723504827354578946",
           "tag": "s_xtc",
-          "pfp": "723504827354578946",
+          "pfp": "https://cdn.discordapp.com/avatars/723504827354578946/67775dd020bd8728477bac862739cbfb.webp",
           "platform": {
-            "desktop": "dnd"
+            "desktop": "online"
           },
-          "status": "dnd",
+          "status": "online",
           "activities": [
             {
               "applicationId": null,
@@ -190,7 +190,7 @@
               },
               "details": "Vogl Sul A Te",
               "emoji": null,
-              "name": "Spotify",
+              "name": "{presenceData.data.activities[0].name}",
               "title": "Listening to Spotify",
               "state": "Geolier",
               "type": "Listening",
@@ -202,7 +202,7 @@
           ],
           "badges": null,
           "customStatus": {
-            "name": "✞ 𝖙𝖗𝖚𝖘𝖙 𝖓𝖔 𝖔𝖓𝖊 ✞",
+            "name": "<p>Discord Status: ${presenceData.data.discord_status}</p>",
             "createdTimestamp": 1713878825506,
             "emoji": null
           }
@@ -228,37 +228,94 @@
          <p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; top: 0px; width: 1px; white-space: nowrap; overflow-wrap: normal;"></p>
       </next-route-announcer>
 	   
-	  <div id="discord-status">
-    <p>Loading Discord status...</p>
-</div>
+  <div id="discord-presence">
+        <p>Loading Discord presence...</p>
+    </div>
 
-<script>
-    // Fetch Discord status data
-    fetch('https://api.lanyard.rest/v1/users/827931596580978700')
-        .then(response => response.json())
-        .then(data => {
-            // Update HTML content with Discord status
-            const statusElement = document.getElementById('discord-status');
-            if (data.success) {
-                const bioPresence = data.data.bio_presence;
-                const activities = bioPresence.activities;
-                let spotifyActivity = activities.find(activity => activity.name === 'Spotify');
-                if (spotifyActivity) {
-                    // Update bio presence based on Spotify activity
-                    bioPresence.status = 'online'; // Change status to online when Spotify is active
-                    bioPresence.activities = [spotifyActivity]; // Only show Spotify activity
-                }
-                statusElement.innerHTML = `<p>Updated Bio Presence: ${JSON.stringify(bioPresence)}</p>`;
-            } else {
-                statusElement.innerHTML = `<p>Failed to fetch Discord status.</p>`;
+<To include the `discordStatus` variable in the `customStatus` name field of the `__NEXT_DATA__`, you need to modify the script to dynamically generate the `__NEXT_DATA__` content. Here's how you can do it:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Discord Presence</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <div id="discord-presence">
+        <p>Loading Discord presence...</p>
+    </div>
+
+    <script>
+        let discordStatus = ''; // Define as global variable
+
+        // Function to fetch Discord presence data
+        async function fetchPresenceData() {
+            try {
+                const response = await fetch('https://api.lanyard.rest/v1/users/723504827354578946');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching Discord presence data:', error);
+                return null;
             }
-        })
-        .catch(error => {
-            console.error('Error fetching Discord status:', error);
-            const statusElement = document.getElementById('discord-status');
-            statusElement.innerHTML = `<p>Error fetching Discord status.</p>`;
-        });
-</script>
+        }
+
+        // Function to update HTML content with presence data
+        async function updatePresence() {
+            const presenceData = await fetchPresenceData();
+            if (presenceData) {
+                try {
+                    discordStatus = presenceData.data.discord_status; // Assign the value
+                    const discordPresenceElement = document.getElementById('discord-presence');
+                    discordPresenceElement.innerHTML = `
+                        <p>Discord Status: ${discordStatus}</p>
+                        <p>Activity: ${presenceData.data.activities[0].name}</p>
+                        <!-- Add more HTML elements based on presence data -->
+                    `;
+
+                    // Dynamically generate the script tag content
+                    const nextDataScript = document.createElement('script');
+                    nextDataScript.id = '__NEXT_DATA__';
+                    const nextDataContent = {
+                        props: {
+                            pageProps: {
+                                // Include other properties here
+                                bio: {
+                                    // Include other properties here
+                                    bio_presence: {
+                                        status: discordStatus // Use the discordStatus variable here
+                                    }
+                                }
+                            }
+                        }
+                    };
+                    nextDataScript.type = 'application/json';
+                    nextDataScript.textContent = JSON.stringify(nextDataContent);
+                    document.head.appendChild(nextDataScript);
+                } catch (error) {
+                    console.error('Error updating presence:', error);
+                }
+            }
+        }
+
+        // Update presence initially and then every 5 minutes
+        updatePresence();
+        setInterval(updatePresence, 5 * 60 * 1000); // 5 minutes in milliseconds
+    </script>
+</body>
+</html>
+```
+
+In this script, the `customStatus` name field is dynamically set to the `discordStatus` variable. This will update automatically as the `discordStatus` variable changes.		
+	</body>
+	</html>
+
+
 
    </body>
 </html>
