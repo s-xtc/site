@@ -18,6 +18,8 @@
       <link data-next-font="" rel="preconnect" href="https://e-z.bio/" crossorigin="anonymous">
       <link rel="preload" href="./sxtc_files/ca1edd055af5abe0.css" as="style">
       <link rel="stylesheet" href="./sxtc_files/ca1edd055af5abe0.css" data-n-g="">
+	  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+	  
       <noscript data-n-css=""></noscript>
       <script defer="" nomodule="" src="./sxtc_files/polyfills-c67a75d1b6f99dc8.js.download"></script><script src="./sxtc_files/webpack-46a64726323115e1.js.download" defer=""></script><script src="./sxtc_files/framework-2c79e2a64abdb08b.js.download" defer=""></script><script src="./sxtc_files/main-6fec0a276447d971.js.download" defer=""></script><script src="./sxtc_files/app-c4904b9d5512a614.js.download" defer=""></script><script src="./sxtc_files/972-a8bb8c417d4f9752.js.download" defer=""></script><script src="./sxtc_files/923-d76ad5ccb5039c6c.js.download" defer=""></script><script src="./sxtc_files/[username]-f861a9a6a8d2c96a.js.download" defer=""></script><script src="./sxtc_files/buildManifest.js.download" defer=""></script><script src="./sxtc_files/ssgManifest.js.download" defer=""></script>
       <style id="_goober"> @keyframes go2264125279{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go3020080000{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}@keyframes go463499852{from{transform:scale(0) rotate(90deg);opacity:0;}to{transform:scale(1) rotate(90deg);opacity:1;}}@keyframes go1268368563{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}@keyframes go1310225428{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go651618207{0%{height:0;width:0;opacity:0;}40%{height:0;width:6px;opacity:1;}100%{opacity:1;height:10px;}}@keyframes go901347462{from{transform:scale(0.6);opacity:0.4;}to{transform:scale(1);opacity:1;}}.go4109123758{z-index:9999;}.go4109123758 > *{pointer-events:auto;}
@@ -184,26 +186,26 @@
               "applicationId": null,
               "assets": {
                 "smallImage": null,
-                "largeImage": "https://i.scdn.co/image/ab67616d0000b2734f73e2547360c86c49a2f18f",
+                "largeImage": "",
                 "smallText": null,
-                "largeText": "Emanuele"
+                "largeText": ""
               },
-              "details": "Vogl Sul A Te",
+              "details": "",
               "emoji": null,
-              "name": "{presenceData.data.activities[0].name}",
-              "title": "Listening to Spotify",
-              "state": "Geolier",
-              "type": "Listening",
+              "name": "",
+              "title": "",
+              "state": "",
+              "type": "",
               "timestamps": {
-                "start": "2024-04-23T18:19:08.929Z",
-                "end": "2024-04-23T18:22:14.355Z"
+                "start": "",
+                "end": ""
               }
             }
           ],
           "badges": null,
           "customStatus": {
-            "name": "<p>Discord Status: ${presenceData.data.discord_status}</p>",
-            "createdTimestamp": 1713878825506,
+            "name": "",
+            "createdTimestamp":1,
             "emoji": null
           }
         }
@@ -227,95 +229,6 @@
       <next-route-announcer>
          <p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; top: 0px; width: 1px; white-space: nowrap; overflow-wrap: normal;"></p>
       </next-route-announcer>
-	   
-  <div id="discord-presence">
-        <p>Loading Discord presence...</p>
-    </div>
-
-<To include the `discordStatus` variable in the `customStatus` name field of the `__NEXT_DATA__`, you need to modify the script to dynamically generate the `__NEXT_DATA__` content. Here's how you can do it:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Discord Presence</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
-</head>
-<body>
-    <div id="discord-presence">
-        <p>Loading Discord presence...</p>
-    </div>
-
-    <script>
-        let discordStatus = ''; // Define as global variable
-
-        // Function to fetch Discord presence data
-        async function fetchPresenceData() {
-            try {
-                const response = await fetch('https://api.lanyard.rest/v1/users/723504827354578946');
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('Error fetching Discord presence data:', error);
-                return null;
-            }
-        }
-
-        // Function to update HTML content with presence data
-        async function updatePresence() {
-            const presenceData = await fetchPresenceData();
-            if (presenceData) {
-                try {
-                    discordStatus = presenceData.data.discord_status; // Assign the value
-                    const discordPresenceElement = document.getElementById('discord-presence');
-                    discordPresenceElement.innerHTML = `
-                        <p>Discord Status: ${discordStatus}</p>
-                        <p>Activity: ${presenceData.data.activities[0].name}</p>
-                        <!-- Add more HTML elements based on presence data -->
-                    `;
-
-                    // Dynamically generate the script tag content
-                    const nextDataScript = document.createElement('script');
-                    nextDataScript.id = '__NEXT_DATA__';
-                    const nextDataContent = {
-                        props: {
-                            pageProps: {
-                                // Include other properties here
-                                bio: {
-                                    // Include other properties here
-                                    bio_presence: {
-                                        status: discordStatus // Use the discordStatus variable here
-                                    }
-                                }
-                            }
-                        }
-                    };
-                    nextDataScript.type = 'application/json';
-                    nextDataScript.textContent = JSON.stringify(nextDataContent);
-                    document.head.appendChild(nextDataScript);
-                } catch (error) {
-                    console.error('Error updating presence:', error);
-                }
-            }
-        }
-
-        // Update presence initially and then every 5 minutes
-        updatePresence();
-        setInterval(updatePresence, 5 * 60 * 1000); // 5 minutes in milliseconds
-    </script>
-</body>
-</html>
-```
-
-In this script, the `customStatus` name field is dynamically set to the `discordStatus` variable. This will update automatically as the `discordStatus` variable changes.		
-	</body>
-	</html>
-
-
 
    </body>
 </html>
