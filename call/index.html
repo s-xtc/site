@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bff9f2f23314d44da7ee53e3b7196ae6f75985fec80acb78364cd7a40f7b53be
-size 596
+<title>bellen</title>
+<link rel="shortcut icon" type="image/jpg" href="/favicon.ico">
+<div id="metered-frame"></div>
+<script src="https://cdn.metered.ca/sdk/frame/1.4.2/sdk-frame.min.js"></script>
+<script>
+    var frame = new MeteredFrame(); 
+    frame.init({
+        roomURL: "aliasgher.metered.live/acagtzedjs",
+    }, document.getElementById("metered-frame"));
+    
+</script>
+<button id="myButton" class="float-left submit-button" >Ga terug</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/";
+    };
+</script>
+
