@@ -1,3 +1,63 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:068f5b206995de3cb77ba301a32b55ea4700df58832b42bbebc34f73a8db8400
-size 4414
+#myVideo { position: fixed; top: 50%; bottom: 50%; left: 50%; width: auto; height: auto; overflow: hidden; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); }
+.content { position: fixed; bottom: 0px; background: rgba(0, 0, 0, 0.5); color: rgb(241, 241, 241); width: 100%; padding: 20px; }
+body { margin: 0px; color: white; font-family: "Nunito Sans", sans-serif; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; -webkit-box-align: center; align-items: center; background-color: black; overflow: hidden; }
+.btnwrap { min-height: 100vh; min-width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: black; outline: none; border: none; }
+#overlay-start { font-size: 100%; color: white; background-color: black; outline: none; border: none; font-weight: 300; line-height: 1.2; font-family: "Courier New", monospace; }
+.wrapper { position: absolute; inset: 0px; transition: all 0.5s ease 0s; margin: auto; visibility: hidden; text-align: center; }
+#bgvid { position: fixed; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -100; transform: translateX(-50%) translateY(-50%); background-size: cover; }
+.header { position: relative; text-align: center; right: 1.6%; }
+img { width: 120px; height: 120px; border-radius: 50%; }
+.logo { width: 35%; height: 35%; border-radius: 0%; margin-bottom: 0%; }
+.pfp { width: 120px; height: 120px; border-radius: 50%; box-shadow: rgb(0, 0, 0) 0px 0px 3px 5px; }
+.pfp:hover { box-shadow: rgb(0, 0, 0) 0px 0px 3px 5px; }
+.callsign { width: 24px; height: 24px; border-radius: 50%; }
+.center { position: relative; }
+.members { margin-top: 0px; display: flex; justify-content: center; }
+p:hover { text-decoration: underline; }
+.card { z-index: 1; transform: scale(1); display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; padding: 30px; width: 128px; min-width: 128px; -webkit-box-align: center; align-items: center; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s; border-radius: 10px; }
+.card + .card { margin-left: 0px; }
+.card > .username { padding-top: 15px; color: rgb(255, 255, 255); font-weight: bold; }
+.card > .username:hover { color: rgb(68, 138, 198); }
+.card > .username > .dwc { color: rgb(237, 192, 92); text-shadow: rgb(255, 110, 0) 0px 1px, red 1px 0px 15px, 1px 1px; }
+.card > .sub { font-size: smaller; opacity: 0.3; transition: opacity 0.5s ease-in-out 0s; text-align: center; }
+.card > .socials { text-align: center; margin-top: 5px; }
+.card > .socials > a { color: white; transition: color 0.4s ease-in-out 0s; }
+.card > .socials > a:hover { color: black; opacity: 1; }
+.card > .socials a + a { margin-left: 5px; }
+.card:hover { transform: scale(1.1); z-index: 2; }
+.card:hover .sub { opacity: 1; color: white; }
+@media screen and (max-width: 1800px) {
+  .card { width: 180px; min-width: 180px; }
+}
+@media screen and (max-width: 1650px) {
+  .card { width: 150px; min-width: 150px; }
+}
+@media screen and (max-width: 1450px) {
+  .card { width: 130px; min-width: 130px; }
+}
+@media screen and (max-width: 1300px) {
+  .card { width: 100px; min-width: 100px; }
+}
+@media screen and (max-width: 1100px) {
+  .members { -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; }
+  .members.row-2 { margin-left: -40px; }
+  .members.row-2 .card { margin-left: 50px; }
+  .card { margin-bottom: 10px; width: 400px; min-width: 400px; }
+  .card + .card { margin-left: 0px; }
+  .center { display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; top: 0px; position: relative; left: 0px; transform: translate(0px, 0px); -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; }
+  .center .list { display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; flex-direction: row; }
+  .title { position: relative; }
+}
+@media screen and (max-width: 900px) {
+  .card { width: 300px; min-width: 300px; }
+}
+@media screen and (max-width: 730px) {
+  .card { width: 200px; min-width: 200px; }
+}
+@media screen and (max-width: 520px) {
+  .card { width: 100px; min-width: 100px; height: 210px; }
+}
+@media screen and (max-width: 300px) {
+  .card { width: 80px; min-width: 80px; height: 220px; }
+}
+* { cursor: url("https:"), auto !important; }
