@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Video Player</title>
+<style>
+  /* Style for the video player */
+  .video-container {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+    margin-bottom: 20px; /* Add spacing between videos */
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+
+  .play-pause-button {
+    cursor: pointer;
+  }
+
+  .volume-slider {
+    width: 100px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Video Player for 1.mp4 -->
+<div class="video-container">
+  <video width="640" height="360" controls>
+    <source src="1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Custom Controls -->
+  <div class="controls">
+    <div class="play-pause-button" onclick="togglePlayPause(this)">
+      <i class="fa fa-play"></i>
+    </div>
+    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" onchange="changeVolume(this)">
+  </div>
+</div>
+
+<!-- Video Player for 2.mp4 -->
+<div class="video-container">
+  <video width="640" height="360" controls>
+    <source src="2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Custom Controls -->
+  <div class="controls">
+    <div class="play-pause-button" onclick="togglePlayPause(this)">
+      <i class="fa fa-play"></i>
+    </div>
+    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" onchange="changeVolume(this)">
+  </div>
+</div>
+
+<!-- Repeat the above video player pattern for the remaining videos (3.mp4 to 23.mp4) -->
+
+<!-- Font Awesome for play/pause icon -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+  function togglePlayPause(button) {
+    var video = button.parentElement.parentElement.querySelector('video');
+    var icon = button.querySelector('i');
+    if (video.paused || video.ended) {
+      video.play();
+      icon.className = 'fa fa-pause';
+    } else {
+      video.pause();
+      icon.className = 'fa fa-play';
+    }
+  }
+
+  function changeVolume(slider) {
+    var video = slider.parentElement.parentElement.querySelector('video');
+    video.volume = slider.value;
+  }
+</script>
+
+</body>
+</html>
