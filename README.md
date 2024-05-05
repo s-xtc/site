@@ -1,2 +1,2 @@
 # site
-HOW to make this cool 
+e-z.bio clone / random shi
