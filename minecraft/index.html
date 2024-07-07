@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Minecraft :: Stronghold Triangulator</title>
+<!--
+ 
+v0.2
+ 
+Updates:
+- Minor text revision in instructions for clarification
+- Input validation -- all 6 inputs must highlight green, otherwise calculation won't run.
+ 
+v0.3
+- Clear output when recalculating
+- Clear graph canvas when recalculating
+- Clear optional debug info when recalculating
+- Changed formula for converting Minecraft heading to trigonometric degrees (possibly unnecessary?)
+- Added calculated reference points for cast lines
+- Fixed inverted Z axis coordinates for second and third strongholds
+ 
+DISCLAIMER:  
+ 
+Standard disclaimers apply, all wrongs reserved.  Your mileage may vary.  Lather, rinse, repeat.
+ 
+-->
+<style>
+body {
+    font-family : Tahoma, Arial, Sans-serif;
+    font-size : 9pt;
+}
+th {
+    background-color : #004080;
+    font-weight : bold;
+    color : #fff;
+}
+td {
+    text-align : center;
+    font-size : 12pt;
+}
+.blank {
+  background-color : #c0c0ff;
+  border : none;
+}
+.err {
+  background-color : #ffc0c0;
+  border : none;
+}
+.ok {
+  background-color : #c0ff00;
+  border : none;
+}
+</style>
+<script type="text/javascript">
+    
+function isNumber(n) {
+ 
+    return !isNaN(parseFloat(n)) && isFinite(n);
+ 
+}
+ 
+function validInput (o) {
+ 
+    if (o.value == '') {
+        o.className = 'blank';
+        return false;
+    } else if (isNumber(o.value)) {
+        o.className = 'ok';
+        return false;
+    } else {
+        o.className = 'err';
+        return false;
+    }
+ 
+}
+    
+function deg2rad (deg) {
+    return deg * Math.PI / 180;
+}
+ 
+function rad2deg (rad) {
+    return rad * 180 / Math.PI;
+}
+    
+function mca2deg (mca) {
+ 
+    if (mca < -90) {
+        return Math.abs(mca) - 90
+    } else if (mca < 0) {
+        return 270 + mca;
+    } else {
+        return 270 - mca;
+    }
+}
+ 
+function deg2mca (deg) {
+ 
+    deg = deg % 360;
+    if (deg < 90) {
+        return -90 - deg;
+    } else {
+        return 270 - deg;
+    }
+ 
+}
+    
+function formatFloat (f, dec) {
+  
+    return Math.round(f * Math.pow(10,dec)) / Math.pow(10,dec);
+  
+}
+ 
+function drawGraph() {
+    
+    var c = document.getElementById('map').getContext('2d');
+ 
+    // clear contents
+        c.fillStyle = '#FFFFFF';
+        c.fillRect(0,0,1200,1200);
+    
+    c.strokeStyle = '#808080';
+    c.beginPath();
+    c.moveTo(0,601);
+    c.lineTo(1201,601);
+    c.moveTo(601,0);
+    c.lineTo(601,1201);
+    c.stroke();
+    
+}
+ 
+function scalePlot (x, n) {
+    
+    if (n != 0) {
+        return (x / n);
+    } else {
+        return 0;
+    }
+    
+}
+ 
+function castLine (x1, y1, x2, y2, col) {
+    
+    var c = document.getElementById('map').getContext('2d');
+    
+    c.strokeStyle = col;
+    c.beginPath();
+    c.moveTo(601 + scalePlot (x1, 2), 601 + scalePlot (y1, 2));
+    c.lineTo(601 + scalePlot (x2, 2), 601 + scalePlot (y2, 2));
+    c.stroke();
+    
+}
+ 
+function plotPoint (x, y, col) {
+  
+    var c = document.getElementById('map').getContext('2d');
+    c.fillStyle = col;
+    c.fillRect(600 + scalePlot(x, 2), 600 + scalePlot(y, 2), 3, 3)
+ 
+}
+ 
+function recalc() {
+    
+    // requires some testing -- may not work if (x1,z1) and (x2,z2) are in different quadrants
+    
+    var debug = false;
+    
+    var x1 = document.getElementById('x1').value;
+    var z1 = document.getElementById('z1').value;
+    var a1 = document.getElementById('a1').value;
+    var x2 = document.getElementById('x2').value;
+    var z2 = document.getElementById('z2').value;
+    var a2 = document.getElementById('a2').value;
+ 
+    if (!isNumber(x1) || !isNumber(z1) || !isNumber(a1) || !isNumber(x2) || !isNumber(z2) || !isNumber(a2)) return false;
+    
+    x1 = parseFloat(x1);
+    z1 = parseFloat(z1);
+    a1 = parseFloat(a1); var a1d = mca2deg(a1);
+    x2 = parseFloat(x2);
+    z2 = parseFloat(z2);
+    a2 = parseFloat(a2); var a2d = mca2deg(a2);
+    var xc = document.getElementById('xcalc');
+    var zc = document.getElementById('zcalc');
+    var angular = document.getElementById('angular');
+    
+    // determine point from casting angle
+    var x1n = 0+x1+500*Math.cos(deg2rad(mca2deg(a1)));
+    var z1n = 0+z1-500*Math.sin(deg2rad(mca2deg(a1)));
+    var x2n = 0+x2+500*Math.cos(deg2rad(mca2deg(a2)));
+    var z2n = 0+z2-500*Math.sin(deg2rad(mca2deg(a2)));
+    
+    // calculate intersection of lines
+    // adapted from intersection code here:  http://jsfiddle.net/justin_c_rounds/Gd2S2/light/
+    d = ((z2n - z2) * (x1n - x1)) - ((x2n - x2) * (z1n - z1));
+    a = z1 - z2;
+    b = x1 - x2;
+    n1 = ((x2n - x2) * a) - ((z2n - z2) * b);
+    n2 = ((x1n - x1) * a) - ((z1n - z1) * b);
+    a = n1 / d;
+    b = n2 / d; // ?
+    var int_x = x1 + (a * (x1n - x1));
+    var int_z = z1 + (a * (z1n - z1));
+    
+    if (debug) {
+        var dbg = document.getElementById('debug');
+        dbg.innerHTML = 'x1 = '+x1+'; z1 = '+z1+'; a1 = '+a1+'; a1d = '+a1d;
+        dbg.innerHTML += '<br>x2 = '+x2+'; z2 = '+z2+'; a2 = '+a2+'; a2d = '+a2d;
+        dbg.innerHTML += '<br>x1n = '+x1n+'; z1n = '+z1n;
+        dbg.innerHTML += '<br>x2n = '+x2n+'; z2n = '+z2n;
+        dbg.innerHTML += '<br>d = '+d+'; a = '+a+'; b = '+b+'; n1 = '+n1+'; n2 = '+n2;
+        dbg.innerHTML += '<br>int_x = '+int_x+'; int_z = '+int_z;
+    }
+ 
+    var deg1 = rad2deg(Math.atan2(-int_z,int_x));
+    var deg2 = (deg1 + 120) % 360;
+    var deg3 = (deg2 + 120) % 360;
+    
+    drawGraph();
+    
+    // draw stronghold
+    plotPoint (int_x, int_z, '#000000');
+ 
+    // draw initial points
+    plotPoint (x1, z1, '#008080'); // (first throw)
+    plotPoint (x2, z2, '#008080'); // (second throw)
+ 
+    // draw cast points
+    plotPoint (x1n, z1n, '#007f7f');
+    plotPoint (x2n, z2n, '#007f7f');
+ 
+    // draw throw shadows
+    castLine (x1, z1, x1n, z1n, '#c0c0c0');
+    castLine (x2, z2, x2n, z2n, '#c0c0c0');
+    
+    castLine (x1, z1, int_x, int_z, '#ff8000'); // (first point to stronghold)
+    castLine (x2, z2, int_x, int_z, '#ffc000'); // (second point to stronghold)
+ 
+    angular.innerHTML = ''
+    angular.innerHTML += 'Stronghold is approximately '+formatFloat(deg1,2)+'&deg; ('+formatFloat(deg2mca(deg1),2)+'<sup>m</sup>) from center (0,0).<br>';
+ 
+    // second stronghold range
+    x1 = Math.round(Math.cos(deg2rad(deg2))*640);
+    z1 = -Math.round(Math.sin(deg2rad(deg2))*640);
+    x2 = Math.round(Math.cos(deg2rad(deg2))*1152);
+    z2 = -Math.round(Math.sin(deg2rad(deg2))*1152);
+ 
+    castLine (x1, z1, x2, z2, '#404040');
+    
+    angular.innerHTML += 'Second stronghold is at about '+formatFloat(deg2,2)+'&deg; ('+formatFloat(deg2mca(deg2),2)+'<sup>m</sup>) somewhere between (X:'+x1+', Z:'+z1+') and (Z:'+x2+', Z:'+z2+').<br>';
+ 
+    // third stronghold range
+    
+    x1 = Math.round(Math.cos(deg2rad(deg3))*640);
+    z1 = -Math.round(Math.sin(deg2rad(deg3))*640);
+    x2 = Math.round(Math.cos(deg2rad(deg3))*1152);
+    z2 = -Math.round(Math.sin(deg2rad(deg3))*1152);
+    
+    castLine (x1, z1, x2, z2, '#c0c0c0');
+    
+    angular.innerHTML += 'Third stronghold is at about '+formatFloat(deg3,2)+'&deg; ('+formatFloat(deg2mca(deg3),2)+'<sup>m</sup>) somewhere between (X:'+x1+', Z:'+z1+') and (Z:'+x2+', Z:'+z2+').<br>';
+    
+    xc.innerHTML = ''+Math.round(int_x);
+    zc.innerHTML = ''+Math.round(int_z);
+    
+}
+</script>
+</head>
+<body onload="document.getElementById('x1').focus()">
+<h1>Stronghold Triangulator</h1>
+<table width="80%" align="center">
+<tr><th colspan="6">How to Use</th></tr>
+<tr><td colspan="6"></td></tr>
+<p>Minecraft stronghold finder with as few as two throws!</p>
+<ol>
+<li>Throw an Eye of Ender and face the direction it travels, making sure to line your view up
+    with the trail as closely as possible.  Center the crosshair over the eye before it falls to
+    the ground or shatters.  Using the F3 screen, note current X, Z, and angle (diplayed after
+    "f:" below the X, Y, and Z coordinates).  You won't necessarily need all the decimal points,
+    but keeping those may improve accuracy of results.</li>
+<li>Pick a direction roughly perpendicular  to your current view angle, and travel a couple hundred
+    blocks.  The larger the angle between both throws to more chance there is to be accurate.
+  Again, throw the Eye of Ender, line up your view, and note new X, Z, and angle.</li>
+<li>Enter the values in the corresponding fields then click calculate.  The result should be
+    fairly close to the End Portal.  A graph is also displayed (required browser capable of HTML5
+    canvas drawing) that shows the casting directions (yellow/orange) and the rough locations of
+    the other two strongholds.</li>
+</ol>
+ 
+<p>How does it work?</p>
+ 
+<p>Each throw describes a position and angle.  These are used to calculate a position 100 blocks away
+(though any reasonable distance will work). This defines two lines which can be used to calculate
+the intersection where they cross.</p>
+ 
+<p>Many cases have been tested to work properly, though a few additional possibilities need to
+be verified.  As long as both throws are targeting the same stronghold, it should be accurate.</p>
+ 
+<p>Version 1.9 increased the number of strongholds generated from 3 to 128.  This will still work
+to find a stronghold beyond the innermost 3, but the second and third calculated positions will
+be incorrect and the graph will be erroneous.  The two throws used for input still need to
+point at the same stronghold in order to give accurate results.</p>
+ 
+<tr><td class="title" colspan="2">X1</td><td class="title" colspan="2">Z1</td><td class="title" colspan="2">Angle 1</td></tr>
+<tr><td class="entry" colspan="2"><input type="text" class="blank" id="x1" size="10" maxlength="10" onkeyup="validInput(this);"></td><td class="entry" colspan="2"><input type="text" class="blank" id="z1" size="10" maxlength="10" onkeyup="validInput(this);"></td><td class="entry" colspan="2"><input type="text" class="blank" id="a1" size="10" maxlength="10" onkeyup="validInput(this);"></td></tr>
+<tr><td class="title" colspan="2">X2</td><td class="title" colspan="2">Z2</td><td class="title" colspan="2">Angle 2</td></tr>
+<tr><td class="entry" colspan="2"><input type="text" class="blank" id="x2" size="10" maxlength="10" onkeyup="validInput(this);"></td><td class="entry" colspan="2"><input type="text" class="blank" id="z2" size="10" maxlength="10" onkeyup="validInput(this);"></td><td class="entry" colspan="2"><input type="text" class="blank" id="a2" size="10" maxlength="10" onkeyup="validInput(this);"></td></tr>
+<!-- uncomment this section and set "debug = true;" above to show details
+<tr><th colspan="6">Debug</th</tr>
+<tr><td colspan="6"><span id="debug">&nbsp;</span></td></tr>    
+-->
+<tr><th colspan="6">Result</th</tr>
+<tr><td colspan="3">X : <span id="xcalc">?</span></td><td colspan="3">Z : <span id="zcalc">?</span></td></tr>
+<tr><td colspan="6"><span id="angular">&nbsp;</span></td></tr>
+<tr><td colspan="6"><input type="button" value="calculate" onclick="recalc(); return false"></td></tr>
+<tr><td colspan="6"><canvas id="map" width="1201" height="1201" /></td></tr>
+</table>
+</body>
+</html>
